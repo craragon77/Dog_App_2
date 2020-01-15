@@ -17,7 +17,7 @@ function listOptions(responseJson){
         if (subBreeds[i].length >= 1 ){
             for (let x = 0; x < subBreeds[i].length; x++){
                 $(".breed_list").append(
-                `<option>${subBreeds[x]}  ${breeds[i]}</option>`
+                `<option>${subBreeds[i][x]} ${breeds[i]}</option>`
                 )
             }
         }
