@@ -15,7 +15,7 @@ function listOptions(responseJson){
 }
 
 function genList(){
-    $(".make_breed").click(function(event){
+    $(".make_breed").click(function(){
         alert("hello, Dave")
     })
 }
