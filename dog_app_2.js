@@ -15,12 +15,12 @@ function listOptions(responseJson){
     const subBreeds = Object.values(responseJson.message)
     for (let i = 0; i < subBreeds.length; i++){
         if (subBreeds[i].length > 0 ){
-            return subBreeds[i]
+            console.log(subBreeds[i])
         }
     }
     for (let i = 0; i < breeds.length; i++){
         $(".breed_list").append(
-            `<option>${subBreeds}${breeds}</option>`
+            `<option>${breeds[i]}</option>`
         )
     }
 }
