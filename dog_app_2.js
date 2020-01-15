@@ -25,12 +25,8 @@ function genList(){
 }
 
 function valueArray(responseJson) {
-    console.log(responseJson)
+    console.log(responseJson.message)
 }
-
-
-
 
 fetchBreedList()
 genList()
-valueArray()
