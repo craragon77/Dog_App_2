@@ -12,8 +12,8 @@ function fetchBreedList() {
 
 function listOptions(responseJson){
     for (let i = 0; i < responseJson.message.length; i++){
-        $("option").replaceWith(
-            `<option>${responseJson.message[i]}</option>`
+        $("option").append(
+            `<option>${responseJson[i]}</option>`
         )
     }
 }
