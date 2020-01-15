@@ -14,10 +14,10 @@ function listOptions(responseJson){
     const breeds = Object.keys(responseJson.message)
     const subBreeds = Object.values(responseJson.message)
     for (let i = 0; i < breeds.length; i++){
-        if (subBreeds.length >= 1 ){
-            for (let i = 0; i < subBreeds.length; i++){
+        if (subBreeds[i].length >= 1 ){
+            for (let x = 0; x < subBreeds[i].length; x++){
                 $(".breed_list").append(
-                `<option>${subBreeds[i]}  ${breeds[i]}</option>`
+                `<option>${subBreeds[x]}  ${breeds[i]}</option>`
                 )
             }
         }
