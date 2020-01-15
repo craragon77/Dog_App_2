@@ -11,9 +11,16 @@ function fetchBreedList() {
 }
 
 function listOptions(responseJson){
-    for (let i = 0; i < responseJson.message.length; i++){
-        $("option").append(
-            `<option>${responseJson[i]}</option>`
+    const breeds = Object.keys(responseJson.message)
+    const subBreeds = Object.values(responseJson.message)
+    for (let i = 0; i < subBreeds.length; i++){
+        if (subBreeds[i].length > 0 ){
+            return subBreeds[i]
+        }
+    }
+    for (let i = 0; i < breeds.length; i++){
+        $(".breed_list").append(
+            `<option>${subBreeds}${breeds}</option>`
         )
     }
 }
