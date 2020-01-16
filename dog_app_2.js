@@ -10,13 +10,23 @@ function fetchBreedList() {
     .catch(warning => console.warn(warning) || alert("Ruh-Roh! Something went wrong! Please try again later"))
 }
 function fetchDogPicture(breeds, subBreeds) {
-    fetch('https://dog.ceo/api/breed/' + breeds + subBreeds +'/images/random')
+    if (subBreeds > 0){
+    fetch('https://dog.ceo/api/breed/' + breeds + '/' + subBreeds +'/images/random')
     .then(response => response.json())
     .then(doggyResponseJson =>{
         console.warn(doggyResponseJson);
         genPic(doggyResponseJson);
     })
     .catch(error => console.warn(error)|| alert("Zoinks! We can't find any dogs of that breed! Please come back later"))
+    } else{
+        fetch('https://dog.ceo/api/breed/' + breeds + '/images/random')
+        .then(response => response.json())
+        .then(doggyResponseJson =>{
+            console.warn(doggyResponseJson);
+            genPic(doggyResponseJson);
+        })
+        .catch(error => console.warn(error)|| alert("Zoinks! We can't find any dogs of that breed! Please come back later"))
+    }
 }
 
 function listOptions(responseJson){
@@ -46,6 +56,7 @@ function genPic(doggyResponseJson){
                 <img class="dog_pic" src="${doggyResponseJson.message}" alt="doggy">
             </section>`
             )
+        fetchDogPicture(breeds, subBreeds)
     })
 }
 
@@ -54,5 +65,4 @@ function valueArray(responseJson) {
 }
 
 fetchBreedList()
-fetchDogPicture()
-//genPic()
+genPic()
