@@ -48,6 +48,13 @@ function listOptions(responseJson){
     }
 }
 
+function submitBreedButton() {
+    $(".make_breed").click(function(event){
+        event.preventDefault();
+        fetchDogPicture();
+    })
+}
+
 function genPic(doggyResponseJson){
     $(".make_breed").click(function(event){
         event.preventDefault();
@@ -56,7 +63,6 @@ function genPic(doggyResponseJson){
                 <img class="dog_pic" src="${doggyResponseJson.message}" alt="doggy">
             </section>`
             )
-        fetchDogPicture(breeds, subBreeds)
     })
 }
 
@@ -65,4 +71,5 @@ function valueArray(responseJson) {
 }
 
 fetchBreedList()
-genPic()
+submitBreedButton()
+
