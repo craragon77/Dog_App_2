@@ -9,6 +9,15 @@ function fetchBreedList() {
     })
     .catch(warning => console.warn(warning) || alert("Ruh-Roh! Something went wrong! Please try again later"))
 }
+function fetchDogPicture(breeds, subBreeds) {
+    fetch('https://dog.ceo/api/breed/' + breeds + subBreeds +'/images/random')
+    .then(response => response.json())
+    .then(doggyResponseJson =>{
+        console.warn(doggyResponseJson);
+        genPic(doggyResponseJson);
+    })
+    .catch(error => console.warn(error)|| alert("Zoinks! We can't find any dogs of that breed! Please come back later"))
+}
 
 function listOptions(responseJson){
     const breeds = Object.keys(responseJson.message)
@@ -29,18 +38,21 @@ function listOptions(responseJson){
     }
 }
 
-/*function genPic(){
+function genPic(doggyResponseJson){
     $(".make_breed").click(function(event){
         event.preventDefault();
-        fetchDogPicture()
-        $("")
+        $(".dog_pic").replaceWith(
+            `<section class="make_breed">
+                <img class="dog_pic" src="${doggyResponseJson.message}" alt="doggy">
+            </section>`
+            )
     })
-} */
+}
 
 function valueArray(responseJson) {
     console.log(responseJson.message)
 }
 
 fetchBreedList()
-//fetchDogPicture()
+fetchDogPicture()
 //genPic()
