@@ -10,7 +10,7 @@ function fetchBreedList() {
     .catch(warning => console.warn(warning) || alert("Ruh-Roh! Something went wrong! Please try again later"))
 }
 function fetchDogPicture(dogArray) {
-    if (dogArray >= 1){
+    if (dogArray.length > 1){
         console.log(dogArray)
     fetch('https://dog.ceo/api/breed/' + dogArray[1] + '/' + dogArray[0] +'/images/random')
     .then(response => response.json())
