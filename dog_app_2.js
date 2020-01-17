@@ -29,6 +29,7 @@ function fetchDogPicture(chosenBreed, chosenSubBreed) {
     }
 }
 
+
 function listOptions(responseJson){
     const breeds = Object.keys(responseJson.message)
     const subBreeds = Object.values(responseJson.message)
@@ -50,13 +51,14 @@ function listOptions(responseJson){
 }
 
 function submitBreedButton(breeds, subBreeds) {
-    $(".make_breed").click(function(event){
+    $(".make_breed").on("click", "submit", (function(event){
         event.preventDefault();
         let chosenBreed = breeds.val()
         let chosenSubBreed = subBreeds.val()
         console.log(chosenBreed, chosenSubBreed)
         fetchDogPicture(chosenBreed, chosenSubBreed);
     })
+    )
 }
 
 function genPic(doggyResponseJson){
