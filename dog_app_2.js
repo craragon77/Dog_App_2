@@ -9,9 +9,10 @@ function fetchBreedList() {
     })
     .catch(warning => console.warn(warning) || alert("Ruh-Roh! Something went wrong! Please try again later"))
 }
-function fetchDogPicture(myChosenBreed, myChosenSubBreed) {
-    if (myChosenSubBreed.length> 0){
-    fetch('https://dog.ceo/api/breed/' + myChosenBreed + '/' + myChosenSubBreed +'/images/random')
+function fetchDogPicture(dogArray) {
+    if (dogArray >= 1){
+        console.log(dogArray)
+    fetch('https://dog.ceo/api/breed/' + dogArray[1] + '/' + dogArray[0] +'/images/random')
     .then(response => response.json())
     .then(doggyResponseJson =>{
         console.warn(doggyResponseJson);
@@ -19,7 +20,7 @@ function fetchDogPicture(myChosenBreed, myChosenSubBreed) {
     })
     .catch(error => console.warn(error)|| alert("Zoinks! We can't find any dogs of that breed! Please come back later"))
     } else{
-        fetch('https://dog.ceo/api/breed/' + myChosenBreed + '/images/random')
+        fetch('https://dog.ceo/api/breed/' + dogArray + '/images/random')
         .then(response => response.json())
         .then(doggyResponseJson =>{
             console.warn(doggyResponseJson);
@@ -47,29 +48,27 @@ function listOptions(responseJson){
             )
         }
     }
-    submitBreedButton(breeds, subBreeds)
+    submitBreedButton()
 }
 
-function submitBreedButton(breeds, subBreeds) {
+function submitBreedButton() {
     $(".make_breed").on("click submit", (function(event){
         event.preventDefault();
-        let myChosenBreed = $("breeds:input")
-        let myChosenSubBreed = $("subBreeds:input")
-        console.log(myChosenBreed, myChosenSubBreed)
-        fetchDogPicture(myChosenBreed, myChosenSubBreed);
+        let stringBreed = $('select option:selected').text()
+        let dogArray = stringBreed.split(" ")
+        fetchDogPicture(dogArray)
     })
     )
 }
 
+
+
 function genPic(doggyResponseJson){
-    $(".make_breed").click(function(event){
-        event.preventDefault();
-        $(".dog_pic").replaceWith(
-            `<section class="make_breed">
-                <img class="dog_pic" src="${doggyResponseJson.message}" alt="doggy">
-            </section>`
-            )
-    })
+    $(".dog_pic").replaceWith(
+        `<section class="make_breed">
+            <img class="dog_pic" src="${doggyResponseJson.message}" alt="doggy">
+        </section>`
+    )
 }
 
 function valueArray(responseJson) {
