@@ -9,9 +9,9 @@ function fetchBreedList() {
     })
     .catch(warning => console.warn(warning) || alert("Ruh-Roh! Something went wrong! Please try again later"))
 }
-function fetchDogPicture(chosenBreed, chosenSubBreed) {
-    if (subBreeds > 0){
-    fetch('https://dog.ceo/api/breed/' + chosenBreed + '/' + chosenSubBreed +'/images/random')
+function fetchDogPicture(myChosenBreed, myChosenSubBreed) {
+    if (myChosenSubBreed.length> 0){
+    fetch('https://dog.ceo/api/breed/' + myChosenBreed + '/' + myChosenSubBreed +'/images/random')
     .then(response => response.json())
     .then(doggyResponseJson =>{
         console.warn(doggyResponseJson);
@@ -19,7 +19,7 @@ function fetchDogPicture(chosenBreed, chosenSubBreed) {
     })
     .catch(error => console.warn(error)|| alert("Zoinks! We can't find any dogs of that breed! Please come back later"))
     } else{
-        fetch('https://dog.ceo/api/breed/' + chosenBreed + '/images/random')
+        fetch('https://dog.ceo/api/breed/' + myChosenBreed + '/images/random')
         .then(response => response.json())
         .then(doggyResponseJson =>{
             console.warn(doggyResponseJson);
@@ -51,12 +51,12 @@ function listOptions(responseJson){
 }
 
 function submitBreedButton(breeds, subBreeds) {
-    $(".make_breed").on("click", "submit", (function(event){
+    $(".make_breed").on("click submit", (function(event){
         event.preventDefault();
-        let chosenBreed = breeds.val()
-        let chosenSubBreed = subBreeds.val()
-        console.log(chosenBreed, chosenSubBreed)
-        fetchDogPicture(chosenBreed, chosenSubBreed);
+        let myChosenBreed = $("breeds:input")
+        let myChosenSubBreed = $("subBreeds:input")
+        console.log(myChosenBreed, myChosenSubBreed)
+        fetchDogPicture(myChosenBreed, myChosenSubBreed);
     })
     )
 }
